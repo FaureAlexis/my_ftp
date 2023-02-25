@@ -11,7 +11,22 @@ endif
 
 SRC_FTP					=	ftp.c
 
+SRC_SERVER 				=	server.c
+
+SRC_SOCKETS 			=	sockets_tools.c
+
+SRC_AUTH 				=	login.c
+
+SRC_LOGGER 				=	logger.c
+
+SRC_FS					=	home.c
+
 SRC						= 	$(addprefix src/, $(SRC_FTP))						\
+							$(addprefix src/server/, $(SRC_SERVER))				\
+							$(addprefix src/sockets/, $(SRC_SOCKETS))			\
+							$(addprefix src/auth/, $(SRC_AUTH))					\
+							$(addprefix src/logger/, $(SRC_LOGGER))				\
+							$(addprefix src/filesystem/, $(SRC_FS))
 
 MAIN 					=	main.c
 
@@ -29,17 +44,17 @@ CPPFLAGS				=	-I ./include -g
 all:	$(NAME)
 
 PREBUILD:
-	@echo -e "\e[92mCompiling sources : \e[34m$(NAME)\e[5m . \e[0m\e[5m . \
-	\e[34m . \e[0m"
+	@echo -e "\x1b[92mCompiling sources : \x1b[34m$(NAME)\x1b[5m . \x1b[0m\x1b[5m . \
+	\x1b[34m . \x1b[0m"
 
 $(NAME):	PREBUILD $(OBJ)
-	@echo -e "\e[92mBuilding sources : \e[34m$(NAME)\e[5m . \e[0m\e[5m . \
-	\e[34m . \e[0m"
+	@echo -e "\x1b[92mBuilding sources : \x1b[34m$(NAME)\x1b[5m . \x1b[0m\x1b[5m . \
+	\x1b[34m . \x1b[0m"
 	@$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS)
-	@echo -e "\e[92m\e[1mBuild successfull !\e[0m"
+	@echo -e "\x1b[92m\x1b[1mBuild successfull !\x1b[0m"
 
 clean:
-	@echo -e "\e[95mCleaning sources : \e[34m$(NAME)\e[0m"
+	@echo -e "\x1b[95mCleaning sources : \x1b[34m$(NAME)\x1b[0m"
 	@rm -f $(OBJ)
 	@rm -f unit*
 
