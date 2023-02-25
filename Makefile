@@ -39,7 +39,11 @@ MAIN 					=	main.c
 OBJ						=	$(SRC:.c=.o)	\
 							$(addprefix src/, $(MAIN:.c=.o))
 
-TESTS						=	tests/test.c
+TESTS						=	tests/test.c		\
+								tests/commands/test_pwd.c		\
+								tests/commands/test_cwd.c		\
+								tests/commands/test_ls.c		\
+								tests/commands/test_cdup.c		\
 
 OBJ_TESTS				=	$(SRC:.c=.o)
 
@@ -69,8 +73,8 @@ fclean:	clean
 
 re:	fclean all
 
-tests_run:  fclean $(OBJ_TESTS)
-	$(CC) -o unit_tests $(OBJ_TESTS) $(TESTS) $(CPPFLAGS) -lcriterion --coverage
+tests_run:  fclean PREBUILD $(OBJ_TESTS)
+	$(CC) -o unit_tests $(SRC) $(TESTS) $(CPPFLAGS) -lcriterion --coverage
 	./unit_tests
 
 .PHONY	=	all re fclean clean tests_run
