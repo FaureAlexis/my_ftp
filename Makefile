@@ -24,6 +24,7 @@ SRC_FS					=	home.c
 SRC_COMMANDS			=	pwd.c				\
 							cwd.c				\
 							ls.c				\
+							cdup.c				\
 
 SRC						= 	$(addprefix src/, $(SRC_FTP))						\
 							$(addprefix src/server/, $(SRC_SERVER))				\

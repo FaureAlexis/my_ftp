@@ -39,6 +39,10 @@ int myftp(const char *port, const char *home)
     if (check_home(ftp, home) == 84)
         return free_all();
     signal(SIGINT, sigint_handler);
+    if (chdir(ftp->home) == -1) {
+        perror("chdir");
+        return 84;
+    }
     server(ftp);
     return free_all();
 }

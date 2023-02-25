@@ -99,6 +99,11 @@ int handle_client_command(int client_socket, char *client_ip, char *command)
             return 84;
         return 0;
     }
+    if (strcmp(cmd, "CDUP") == 0) {
+        if (cdup(client_socket) == 84)
+            return 84;
+        return 0;
+    }
     write_client(client_socket, "500\n");
     return 0;
 }

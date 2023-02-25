@@ -54,6 +54,8 @@ int check_home(ftp_t *ftp, const char *home);
 int pwd(int client_socket);
 int cwd(int client_socket, char *path);
 int ls(int client_socket);
+int cdup(int client_socket);
+
 /* Socket tools */
 int write_client(int client_socket, char *response);
 char *read_client(int client_socket);
