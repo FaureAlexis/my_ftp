@@ -21,12 +21,17 @@ SRC_LOGGER 				=	logger.c
 
 SRC_FS					=	home.c
 
+SRC_COMMANDS			=	pwd.c				\
+							cwd.c				\
+							ls.c				\
+
 SRC						= 	$(addprefix src/, $(SRC_FTP))						\
 							$(addprefix src/server/, $(SRC_SERVER))				\
 							$(addprefix src/sockets/, $(SRC_SOCKETS))			\
 							$(addprefix src/auth/, $(SRC_AUTH))					\
 							$(addprefix src/logger/, $(SRC_LOGGER))				\
-							$(addprefix src/filesystem/, $(SRC_FS))
+							$(addprefix src/filesystem/, $(SRC_FS))				\
+							$(addprefix src/commands/, $(SRC_COMMANDS))
 
 MAIN 					=	main.c
 

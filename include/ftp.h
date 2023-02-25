@@ -49,6 +49,11 @@ int check_if_home_is_dir(ftp_t *ftp);
 int check_if_home_is_readable(ftp_t *ftp);
 int check_if_home_is_writable(ftp_t *ftp);
 int check_home(ftp_t *ftp, const char *home);
+
+/* Commands */
+int pwd(int client_socket);
+int cwd(int client_socket, char *path);
+int ls(int client_socket);
 /* Socket tools */
 int write_client(int client_socket, char *response);
 char *read_client(int client_socket);

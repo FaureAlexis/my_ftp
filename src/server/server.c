@@ -8,6 +8,35 @@
 #include <unistd.h>
 #include "../../include/ftp.h"
 
+void get_command_and_param(const char *input, char *command, char *param)
+{
+    char *input_copy = strdup(input);
+    char *token = strtok(input_copy, " ");
+
+    strcpy(command, token);
+    token = strtok(NULL, " ");
+    if (token == NULL) {
+        param = NULL;
+        return;
+    }
+
+    strcpy(param, token);
+    token = strtok(NULL, " ");
+    if (token == NULL) {
+        return;
+    }
+
+    // Concatenate remaining tokens into param
+    strcat(param, " ");
+    strcat(param, token);
+    while ((token = strtok(NULL, " ")) != NULL) {
+        strcat(param, " ");
+        strcat(param, token);
+    }
+
+    free(input_copy);
+}
+
 int configure_server(ftp_t *ftp)
 {
     int server_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -41,14 +70,33 @@ int configure_server(ftp_t *ftp)
 
 int handle_client_command(int client_socket, char *client_ip, char *command)
 {
-    if (strcmp(command, "QUIT") == 0) {
+    char *cmd = malloc(strlen(command) + 1);
+    char *param = malloc(strlen(command) + 1);
+    get_command_and_param(command, cmd, param);
+
+    if (strcmp(cmd, "QUIT") == 0) {
         write_client(client_socket, "221\n");
         log_message(LOG_WARNING, "%s: Disconnected", client_ip);
         close(client_socket);
         return 1;
     }
-    if (strcmp(command, "NOOP") == 0) {
+    if (strcmp(cmd, "NOOP") == 0) {
         write_client(client_socket, "200\n");
+        return 0;
+    }
+    if (strcmp(cmd, "PWD") == 0) {
+        if (pwd(client_socket) == 84)
+            return 84;
+        return 0;
+    }
+    if (strcmp(cmd, "CWD") == 0) {
+        if (cwd(client_socket, param) == 84)
+            return 84;
+        return 0;
+    }
+    if (strcmp(cmd, "LS") == 0) {
+        if (ls(client_socket) == 84)
+            return 84;
         return 0;
     }
     write_client(client_socket, "500\n");
