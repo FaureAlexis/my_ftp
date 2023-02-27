@@ -11,7 +11,7 @@
 Test(home, home)
 {
     ftp_t *ftp = malloc(sizeof(ftp_t));
-    cr_assert_eq(check_home(ftp, "client"), 0);
+    cr_assert_eq(check_home(ftp, "bonus"), 0);
 }
 
 Test(home, wrong_home)
@@ -36,6 +36,6 @@ Test(home, test_fd)
 Test(home, test_good_fd)
 {
     ftp_t *ftp = malloc(sizeof(ftp_t));
-    check_home(ftp, "client");
+    check_home(ftp, "bonus");
     cr_assert_neq(ftp->home_fd, NULL);
 }
