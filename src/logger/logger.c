@@ -12,10 +12,10 @@ const char *level_colors[] = {"\033[0;0m", "\033[0;31m", "\033[0;33m",
 
 int log_level = LOG_DEBUG;
 
-void log_message(enum LogLevel level, const char *format, ...)
+int log_message(enum LogLevel level, const char *format, ...)
 {
     if (level > log_level)
-        return;
+        return 84;
     const char *level_str = "";
     const char *color = "";
     switch (level) {
@@ -52,4 +52,5 @@ void log_message(enum LogLevel level, const char *format, ...)
     vprintf(format, args);
     printf("%s\n", level_colors[LOG_NONE]);
     va_end(args);
+    return 0;
 }

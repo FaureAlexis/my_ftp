@@ -20,5 +20,5 @@ enum LogLevel {
     LOG_DEBUG,
 };
 
-void log_message(enum LogLevel level, const char *format, ...);
+int log_message(enum LogLevel level, const char *format, ...);
 #endif /* !LOGGER_H */

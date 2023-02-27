@@ -39,11 +39,16 @@ MAIN 					=	main.c
 OBJ						=	$(SRC:.c=.o)	\
 							$(addprefix src/, $(MAIN:.c=.o))
 
-TESTS						=	tests/test.c		\
-								tests/commands/test_pwd.c		\
-								tests/commands/test_cwd.c		\
-								tests/commands/test_ls.c		\
-								tests/commands/test_cdup.c		\
+TESTS						=	tests/test.c							\
+								tests/commands/test_pwd.c				\
+								tests/commands/test_cwd.c				\
+								tests/commands/test_ls.c				\
+								tests/commands/test_cdup.c				\
+								tests/sockets/test_socket_tools.c		\
+								tests/fs/test_home.c					\
+								tests/fs/test_home_functions.c 			\
+								tests/logger/test_logger.c				\
+								tests/logger/test_logger_except.c		\
 
 OBJ_TESTS				=	$(SRC:.c=.o)
 
