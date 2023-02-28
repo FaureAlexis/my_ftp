@@ -59,4 +59,6 @@ int cdup(int client_socket);
 /* Socket tools */
 int write_client(int client_socket, char *response);
 char *read_client(int client_socket);
+
+int free_all(ftp_t *ftp, int code);
 #endif /* !FTP_H */

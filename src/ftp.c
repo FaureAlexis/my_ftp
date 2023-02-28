@@ -9,7 +9,7 @@
 
 ftp_t *ftp;
 
-int free_all(void)
+int free_all(ftp_t *ftp, int code)
 {
     if (ftp->client_sockets)
         free(ftp->client_sockets);
@@ -18,13 +18,13 @@ int free_all(void)
         free(ftp->home);
     }
     free(ftp);
-    return 0;
+    return code;
 }
 
 void sigint_handler(int sig)
 {
     (void) sig;
-    free_all();
+    free_all(ftp, 0);
     exit(0);
 }
 
@@ -37,12 +37,12 @@ int myftp(const char *port, const char *home)
     ftp->port_str = port;
     ftp->max_clients = 0;
     if (check_home(ftp, home) == 84)
-        return free_all();
+        return free_all(ftp, 84);
     signal(SIGINT, sigint_handler);
     if (chdir(ftp->home) == -1) {
         perror("chdir");
         return 84;
     }
     server(ftp);
-    return free_all();
+    return free_all(ftp, 0);
 }

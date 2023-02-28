@@ -19,22 +19,35 @@ void get_command_and_param(const char *input, char *command, char *param)
         param = NULL;
         return;
     }
-
     strcpy(param, token);
     token = strtok(NULL, " ");
     if (token == NULL) {
         return;
     }
-
-    // Concatenate remaining tokens into param
     strcat(param, " ");
     strcat(param, token);
     while ((token = strtok(NULL, " ")) != NULL) {
         strcat(param, " ");
         strcat(param, token);
     }
-
     free(input_copy);
+}
+
+int bind_and_listen(
+    ftp_t *ftp, int server_socket, struct sockaddr_in server_address)
+{
+    int bind_status = bind(server_socket, (struct sockaddr *) &server_address,
+        sizeof(server_address));
+    if (bind_status == -1) {
+        perror("bind");
+        return -1;
+    }
+    int listen_status = listen(server_socket, 5);
+    if (listen_status == -1) {
+        perror("listen");
+        return -1;
+    }
+    return 0;
 }
 
 int configure_server(ftp_t *ftp)
@@ -44,24 +57,12 @@ int configure_server(ftp_t *ftp)
         perror("socket");
         return -1;
     }
-
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET;
     server_address.sin_port = htons(ftp->port);
     server_address.sin_addr.s_addr = INADDR_ANY;
-
-    int bind_status = bind(server_socket, (struct sockaddr *) &server_address,
-        sizeof(server_address));
-    if (bind_status == -1) {
-        perror("bind");
+    if (bind_and_listen(ftp, server_socket, server_address) == -1)
         return -1;
-    }
-
-    int listen_status = listen(server_socket, 5);
-    if (listen_status == -1) {
-        perror("listen");
-        return -1;
-    }
     log_message(LOG_SUCCESS,
         "Server is successfully started and listening on port %s",
         ftp->port_str);
@@ -142,7 +143,6 @@ int manage_connection(ftp_t *ftp)
     bool used_clients[ftp->max_clients];
     memset(used_clients, false, sizeof used_clients);
     memset(ftp->client_sockets, 0, sizeof(int) * ftp->max_clients);
-
     if (!ftp->client_sockets) {
         perror("malloc");
         return 84;
@@ -164,7 +164,6 @@ int manage_connection(ftp_t *ftp)
         perror("select");
         return 84;
     }
-    // Check if there is a new incoming connection
     if (FD_ISSET(ftp->server_socket, &ftp->read_fds)) {
         int client_socket = 0;
         struct sockaddr_in client_address;
