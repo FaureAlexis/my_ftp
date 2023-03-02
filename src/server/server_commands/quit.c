@@ -20,3 +20,9 @@ int handle_noop_command(int client_socket)
     write_client(client_socket, "200\n");
     return 0;
 }
+
+int handle_help_command(int client_socket)
+{
+    write_client(client_socket, "214\n");
+    return 0;
+}

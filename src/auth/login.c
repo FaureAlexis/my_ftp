@@ -41,6 +41,12 @@ static int check_auth(
         return 84;
     password = strtok(pass_line, "\r\n");
     password = strtok(password, " ");
+    printf("%s\n", password);
+    if (!password || strcmp(password, "PASS") != 0) {
+        if (write_login_failure(client_socket) == 84)
+            return 84;
+        return 84;
+    }
     password = strtok(NULL, " ");
     if (!password && strcmp(username, "Anonymous") == 0) {
         if (write_login_success(client_socket) == 84)
