@@ -15,6 +15,21 @@ jobs:
     - name: Clean build
       run: make fclean
 
+  tests:
+    name: Unit tests and coverage
+    runs-on: ubuntu-latest
+    needs: compilation
+    container:
+      image: epitechcontent/epitest-docker:latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Compile tests
+      run: make tests_run
+    - name: Clean build
+      run: make fclean
+
   push_to_epitech_repo:
     name: Push to Epitech repository
     runs-on: ubuntu-latest
