@@ -5,10 +5,9 @@
 ** test signal
 */
 
-#include <criterion/criterion.h>
-#include "../../include/ftp.h"
+#include "../tests.h"
 
-Test(fpt, test_signal_handler)
+Test(fpt, test_signal_handler, .init = redirect_all_std)
 {
     pid_t pid = fork();
 

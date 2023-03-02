@@ -5,15 +5,14 @@
 ** test
 */
 
-#include <criterion/criterion.h>
-#include "../../include/ftp.h"
+#include "../tests.h"
 
-Test(ftp, test_ftp)
+Test(ftp, test_ftp, .init = redirect_all_std)
 {
     cr_assert_eq(myftp("21", "bonus"), 0);
 }
 
-Test(ftp, test_wrong_home)
+Test(ftp, test_wrong_home, .init = redirect_all_std)
 {
     cr_assert_eq(myftp("21", "wrong"), 84);
 }

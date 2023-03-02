@@ -5,7 +5,7 @@
 ** test
 */
 
-#include <criterion/criterion.h>
+#include "tests.h"
 
 Test(Test, Basic_test)
 {

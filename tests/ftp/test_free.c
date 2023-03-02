@@ -6,10 +6,9 @@
 */
 
 #include <dirent.h>
-#include <criterion/criterion.h>
-#include "../../include/ftp.h"
+#include "../tests.h"
 
-Test(free, test_free)
+Test(free, test_free, .init = redirect_all_std)
 {
     ftp_t *ftp = malloc(sizeof(ftp_t));
     ftp->client_sockets = malloc(sizeof(int) * 10);

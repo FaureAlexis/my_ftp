@@ -5,15 +5,14 @@
 ** tests
 */
 
-#include <criterion/criterion.h>
-#include "../../include/ftp.h"
+#include "../tests.h"
 
-Test(pwd, Basic_test)
+Test(pwd, Basic_test, .init = redirect_all_std)
 {
     cr_assert_eq(pwd(1), 0);
 }
 
-Test(pwd, wrong_fd)
+Test(pwd, wrong_fd, .init = redirect_all_std)
 {
     cr_assert_eq(pwd(-1), 84);
 }

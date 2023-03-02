@@ -5,10 +5,9 @@
 ** tests
 */
 
-#include <criterion/criterion.h>
-#include "../../include/ftp.h"
+#include "../tests.h"
 
-Test(ls, Basic_test)
+Test(ls, Basic_test, .init = redirect_all_std)
 {
     cr_assert_eq(ls(1), 0);
 }

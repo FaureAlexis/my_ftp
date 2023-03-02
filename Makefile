@@ -40,6 +40,7 @@ OBJ						=	$(SRC:.c=.o)	\
 							$(addprefix src/, $(MAIN:.c=.o))
 
 TESTS						=	tests/test.c							\
+								tests/redirect.c 						\
 								tests/commands/test_pwd.c				\
 								tests/commands/test_cwd.c				\
 								tests/commands/test_ls.c				\
