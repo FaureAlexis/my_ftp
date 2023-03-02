@@ -9,5 +9,5 @@
 
 Test(ls, Basic_test, .init = redirect_all_std)
 {
-    cr_assert_eq(ls(1), 0);
+    cr_assert_eq(myls(1), 0);
 }

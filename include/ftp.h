@@ -23,7 +23,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include "auth.h"
 #include "logger.h"
 
 typedef struct ftp_s {
@@ -37,11 +36,25 @@ typedef struct ftp_s {
     int *client_sockets;
 } ftp_t;
 
+typedef int (*command_handler_t)(int, char *);
 /* FTP */
 int myftp(const char *port, const char *home);
 
 /* Server */
 int server(ftp_t *ftp);
+int configure_server(ftp_t *ftp);
+int bind_and_listen(
+    ftp_t *ftp, int server_socket, struct sockaddr_in server_address);
+void get_command_and_param(const char *input, char *command, char *param);
+void handle_client_connection(int client_socket, char *client_ip);
+int handle_client_command(int client_socket, char *client_ip, char *command);
+int login(int client_socket);
+int handle_quit_command(int client_socket, char *client_ip);
+int handle_noop_command(int client_socket);
+int handle_pwd_command(int client_socket);
+int handle_cwd_command(int client_socket, char *param);
+int handle_ls_command(int client_socket);
+int handle_cdup_command(int client_socket);
 
 /* FS */
 int check_if_home_exist(ftp_t *ftp);
@@ -53,7 +66,7 @@ int check_home(ftp_t *ftp, const char *home);
 /* Commands */
 int pwd(int client_socket);
 int cwd(int client_socket, char *path);
-int ls(int client_socket);
+int myls(int client_socket);
 int cdup(int client_socket);
 
 /* Socket tools */

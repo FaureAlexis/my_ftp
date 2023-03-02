@@ -7,7 +7,7 @@
 
 #include "../../include/ftp.h"
 
-int ls(int client_socket)
+int myls(int client_socket)
 {
     char *path = malloc(1024);
     memset(path, 0, 1024);
