@@ -6,10 +6,10 @@
 */
 
 #ifndef LOGGER_H
-#define LOGGER_H
-#include <stdarg.h>
-#include <stdio.h>
-#include <time.h>
+    #define LOGGER_H
+    #include <stdarg.h>
+    #include <stdio.h>
+    #include <time.h>
 
 enum LogLevel {
     LOG_NONE = 0,
