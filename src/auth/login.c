@@ -69,7 +69,7 @@ int login(int client_socket)
         if (write_client(client_socket, "331\n") == 84)
             return 84;
     } else {
-        if (write_login_failure(client_socket) == 84)
+        if (write_client(client_socket, "331\n") == 84)
             return 84;
         return 84;
     }
