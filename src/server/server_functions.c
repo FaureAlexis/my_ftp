@@ -8,7 +8,7 @@
 #include "../../include/ftp.h"
 
 const char *COMMANDS[] = {
-    "QUIT", "NOOP", "PWD", "CWD", "LS", "CDUP", "HELP", NULL};
+    "QUIT", "NOOP", "PWD", "CWD", "LIST", "CDUP", "HELP", NULL};
 command_handler_t COMMAND_HANDLERS[] = {handle_quit_command,
     handle_noop_command, handle_pwd_command, handle_cwd_command,
     handle_ls_command, handle_cdup_command, handle_help_command, NULL};
