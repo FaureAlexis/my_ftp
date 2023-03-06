@@ -14,6 +14,8 @@ static int read_username(int client_socket, char **username)
         return 84;
     *username = strtok(user_line, "\r\n");
     *username = strtok(*username, " ");
+    if (strcmp(*username, "USER") != 0)
+        return 84;
     *username = strtok(NULL, " ");
     if (!*username)
         return 84;
@@ -63,8 +65,10 @@ int login(int client_socket)
 {
     char *username = NULL;
     int ret = read_username(client_socket, &username);
-    if (ret == 84)
+    if (ret == 84) {
+        write_login_failure(client_socket);
         return 84;
+    }
     if (strcmp(username, "Anonymous") == 0) {
         if (write_client(client_socket, "331\n") == 84)
             return 84;
