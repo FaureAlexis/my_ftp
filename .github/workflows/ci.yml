@@ -37,7 +37,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Docker Compose
-        uses: adrielcodeco/docker-compose-run-action@v1
+        uses: isbang/compose-action@v1.4.1
         with:
           compose-file: './docker-compose.yml'
 
