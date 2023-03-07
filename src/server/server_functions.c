@@ -7,16 +7,18 @@
 
 #include "../../include/ftp.h"
 
-const char *COMMANDS[] = {"QUIT\r\n", "NOOP\r\n", "PWD\r\n", "CWD\r\n",
-    "LIST\r\n", "CDUP\r\n", "HELP\r\n", NULL};
+const char *COMMANDS[] = {
+    "QUIT", "NOOP", "PWD", "CWD", "LIST", "CDUP", "HELP", "DELE", NULL};
 command_handler_t COMMAND_HANDLERS[] = {handle_quit_command,
     handle_noop_command, handle_pwd_command, handle_cwd_command,
-    handle_ls_command, handle_cdup_command, handle_help_command, NULL};
+    handle_ls_command, handle_cdup_command, handle_help_command,
+    handle_dele_command, NULL};
 
 int handle_client_command(int client_socket, char *client_ip, char *command)
 {
     char *cmd = malloc(strlen(command) + 1);
     char *param = malloc(strlen(command) + 1);
+    remove_cr(command);
     get_command_and_param(command, cmd, param);
 
     int i = 0;

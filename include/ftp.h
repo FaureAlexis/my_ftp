@@ -45,7 +45,10 @@ int server(ftp_t *ftp);
 int configure_server(ftp_t *ftp);
 int bind_and_listen(
     ftp_t *ftp, int server_socket, struct sockaddr_in server_address);
+
 void get_command_and_param(const char *input, char *command, char *param);
+void remove_cr(char *str);
+
 void handle_client_connection(int client_socket, char *client_ip);
 int handle_client_command(int client_socket, char *client_ip, char *command);
 int login(int client_socket);
@@ -56,6 +59,8 @@ int handle_cwd_command(int client_socket, char *param);
 int handle_ls_command(int client_socket);
 int handle_cdup_command(int client_socket);
 int handle_help_command(int client_socket);
+int handle_dele_command(int client_socket, char *param);
+
 /* FS */
 int check_if_home_exist(ftp_t *ftp);
 int check_if_home_is_dir(ftp_t *ftp);
@@ -68,6 +73,7 @@ int pwd(int client_socket);
 int cwd(int client_socket, char *path);
 int myls(int client_socket);
 int cdup(int client_socket);
+int dele(int client_socket, char *param);
 
 /* Socket tools */
 int write_client(int client_socket, char *response);

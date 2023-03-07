@@ -30,3 +30,15 @@ void get_command_and_param(const char *input, char *command, char *param)
     }
     free(input_copy);
 }
+
+void remove_cr(char *str)
+{
+    int i = 0;
+    int j = 0;
+    for (i = 0, j = 0; i < strlen(str); i++) {
+        if (str[i] != '\r' && str[i] != '\n') {
+            str[j++] = str[i];
+        }
+    }
+    str[j] = '\0';
+}

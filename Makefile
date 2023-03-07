@@ -17,6 +17,7 @@ SRC_SERVER 				=	server.c	\
 							server_functions.c	\
 							server_commands/path.c \
 							server_commands/quit.c \
+							server_commands/file.c \
 
 SRC_SOCKETS 			=	sockets_tools.c
 
@@ -30,6 +31,7 @@ SRC_COMMANDS			=	pwd.c				\
 							cwd.c				\
 							ls.c				\
 							cdup.c				\
+							dele.c				\
 
 SRC						= 	$(addprefix src/, $(SRC_FTP))					\
 							$(addprefix src/server/, $(SRC_SERVER))			\
