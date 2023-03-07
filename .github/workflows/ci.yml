@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: compilation
     container:
-      image: epitechcontent/epitest-docker:latest
+      image: faurealexis/epitech-tools:latest
     steps:
     - uses: actions/checkout@v2
       with:
