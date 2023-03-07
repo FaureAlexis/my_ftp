@@ -34,10 +34,6 @@ jobs:
     name: Test the number of commands implemented
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Docker Compose
