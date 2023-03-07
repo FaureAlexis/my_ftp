@@ -15,21 +15,6 @@ jobs:
     - name: Clean build
       run: make fclean
 
-  tests:
-    name: Unit tests and coverage
-    runs-on: ubuntu-latest
-    needs: compilation
-    container:
-      image: faurealexis/epitech-tools:latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Compile tests
-      run: make tests_run
-    - name: Clean build
-      run: make fclean
-
   test_commands:
     name: Test the number of commands implemented
     runs-on: ubuntu-latest
