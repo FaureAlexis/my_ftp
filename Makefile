@@ -32,6 +32,8 @@ SRC_COMMANDS			=	pwd.c				\
 							ls.c				\
 							cdup.c				\
 							dele.c				\
+							port.c				\
+							retr.c				\
 
 SRC						= 	$(addprefix src/, $(SRC_FTP))					\
 							$(addprefix src/server/, $(SRC_SERVER))			\

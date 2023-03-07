@@ -87,8 +87,7 @@ int client_prompt(client_t *client)
             close(client->socket);
             return 0;
         }
-        line[r - 1] = '\r';
-        line[r] = '\0';
+        line[r - 1] = '\0';
         if (strcmp(line, "quit") == 0) {
             close(client->socket);
             return 0;

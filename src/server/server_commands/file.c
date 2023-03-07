@@ -13,3 +13,10 @@ int handle_dele_command(int client_socket, char *param)
         return 84;
     return 0;
 }
+
+int handle_retr_command(int client_socket, char *param)
+{
+    if (retr(client_socket, param) == 84)
+        return 84;
+    return 0;
+}

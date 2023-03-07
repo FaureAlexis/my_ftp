@@ -7,6 +7,27 @@
 
 #include "../../include/ftp.h"
 
+int create_socket(char *ip, int port)
+{
+    int data_socket = 0;
+    struct sockaddr_in data_addr;
+
+    data_socket = socket(AF_INET, SOCK_STREAM, 0);
+    if (data_socket == -1) {
+        perror("socket");
+        return 84;
+    }
+    data_addr.sin_family = AF_INET;
+    data_addr.sin_port = htons(port);
+    data_addr.sin_addr.s_addr = inet_addr(ip);
+    if (connect(data_socket, (struct sockaddr *) &data_addr, sizeof(data_addr))
+        == -1) {
+        perror("connect");
+        return 84;
+    }
+    return data_socket;
+}
+
 char *read_client(int client_socket)
 {
     char *buffer = malloc(1024);
