@@ -1,0 +1,17 @@
+version: '3'
+services:
+  ftp-server:
+    build: .
+    ports:
+      - '210:210'
+    expose:
+      - 210
+  ftp-client:
+    image: faurealexis/epitech-tools
+    restart: on-failure
+    working_dir: /app
+    command: /app/test.sh ftp-server 210 && docker stop ftp-server
+    volumes:
+      - ./test_cmd.sh:/app/test.sh
+    depends_on:
+      - ftp-server
