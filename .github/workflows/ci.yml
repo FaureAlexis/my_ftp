@@ -37,15 +37,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Docker Compose
-        uses: docker/compose-action@v2
+        uses: adrielcodeco/docker-compose-run-action@v1
         with:
-          compose-file: docker-compose.yml
-          env: |
-            IP_ADDRESS=127.0.0.1
-            PORT=210
-      - name: Run tests
-        run: |
-          docker compose stop
+          compose-file: './docker-compose.yml'
 
   push_to_epitech_repo:
     name: Push to Epitech repository
