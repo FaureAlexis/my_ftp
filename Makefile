@@ -64,6 +64,8 @@ TESTS						=	tests/test.c							\
 								tests/ftp/test_free.c					\
 								tests/ftp/test_signal.c 				\
 								tests/ftp/auth/test_login.c				\
+								tests/ftp/test_server_tools.c			\
+								tests/ftp/test_server_config.c		\
 
 OBJ_TESTS				=	$(SRC:.c=.o)
 
