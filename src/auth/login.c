@@ -72,8 +72,9 @@ int login(int client_socket)
         if (write_client(client_socket, "331\n") == 84)
             return 84;
     } else {
-        if (write_client(client_socket, "331\n") == 84)
-            return 84;
+        write_client(client_socket, "331\n");
+        char *pass_line = read_client(client_socket, 1024);
+        write_login_failure(client_socket);
         return 84;
     }
     char *password = NULL;
