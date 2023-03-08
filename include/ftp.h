@@ -61,8 +61,10 @@ int handle_cdup_command(int client_socket);
 int handle_help_command(int client_socket);
 int handle_dele_command(int client_socket, char *param);
 int handle_retr_command(int client_socket, char *param);
+int handle_stor_command(int client_socket, char *param);
 int port(int client_socket, char *param);
 int retr(int client_socket, char *param);
+int stor(int client_socket, char *param);
 
 /* FS */
 int check_if_home_exist(ftp_t *ftp);

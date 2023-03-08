@@ -28,11 +28,11 @@ int create_socket(char *ip, int port)
     return data_socket;
 }
 
-char *read_client(int client_socket)
+char *read_client(int client_socket, size_t size)
 {
-    char *buffer = malloc(1024);
-    memset(buffer, 0, 1024);
-    int bytes_read = read(client_socket, buffer, 1024 - 1);
+    char *buffer = malloc(size);
+    memset(buffer, 0, size);
+    int bytes_read = read(client_socket, buffer, size - 1);
     if (bytes_read < 0) {
         perror("read");
         free(buffer);

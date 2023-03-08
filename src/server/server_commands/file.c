@@ -20,3 +20,10 @@ int handle_retr_command(int client_socket, char *param)
         return 84;
     return 0;
 }
+
+int handle_stor_command(int client_socket, char *param)
+{
+    if (stor(client_socket, param) == 84)
+        return 84;
+    return 0;
+}
