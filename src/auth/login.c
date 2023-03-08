@@ -7,7 +7,7 @@
 
 #include "../../include/ftp.h"
 
-static int read_username(int client_socket, char **username)
+int read_username(int client_socket, char **username)
 {
     char *user_line = read_client(client_socket, 1024);
     if (!user_line)
@@ -22,21 +22,21 @@ static int read_username(int client_socket, char **username)
     return 0;
 }
 
-static int write_login_success(int client_socket)
+int write_login_success(int client_socket)
 {
     if (write_client(client_socket, "230\n") == 84)
         return 84;
     return 0;
 }
 
-static int write_login_failure(int client_socket)
+int write_login_failure(int client_socket)
 {
     if (write_client(client_socket, "530\n") == 84)
         return 84;
     return 84;
 }
 
-static int check_auth(
+int check_auth(
     char *password, char *pass_line, int client_socket, char *username)
 {
     if (!pass_line)

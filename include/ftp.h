@@ -52,19 +52,21 @@ void remove_cr(char *str);
 void handle_client_connection(int client_socket, char *client_ip);
 int handle_client_command(int client_socket, char *client_ip, char *command);
 int login(int client_socket);
+int read_username(int client_socket, char **username);
+int write_login_success(int client_socket);
+int write_login_failure(int client_socket);
+int check_auth(
+    char *password, char *pass_line, int client_socket, char *username);
 int handle_quit_command(int client_socket, char *client_ip);
-int handle_noop_command(int client_socket);
-int handle_pwd_command(int client_socket);
+int handle_noop_command(int client_socket, char *param);
+int handle_pwd_command(int client_socket, char *param);
 int handle_cwd_command(int client_socket, char *param);
-int handle_ls_command(int client_socket);
-int handle_cdup_command(int client_socket);
-int handle_help_command(int client_socket);
+int handle_ls_command(int client_socket, char *param);
+int handle_cdup_command(int client_socket, char *param);
+int handle_help_command(int client_socket, char *param);
 int handle_dele_command(int client_socket, char *param);
 int handle_retr_command(int client_socket, char *param);
 int handle_stor_command(int client_socket, char *param);
-int port(int client_socket, char *param);
-int retr(int client_socket, char *param);
-int stor(int client_socket, char *param);
 
 /* FS */
 int check_if_home_exist(ftp_t *ftp);
@@ -79,6 +81,9 @@ int cwd(int client_socket, char *path);
 int myls(int client_socket);
 int cdup(int client_socket);
 int dele(int client_socket, char *param);
+int port(int client_socket, char *param);
+int retr(int client_socket, char *param);
+int stor(int client_socket, char *param);
 
 /* Socket tools */
 int write_client(int client_socket, char *response);

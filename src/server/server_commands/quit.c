@@ -15,13 +15,13 @@ int handle_quit_command(int client_socket, char *client_ip)
     return 1;
 }
 
-int handle_noop_command(int client_socket)
+int handle_noop_command(int client_socket, char *param)
 {
     write_client(client_socket, "200\n");
     return 0;
 }
 
-int handle_help_command(int client_socket)
+int handle_help_command(int client_socket, char *param)
 {
     write_client(client_socket, "214\n");
     return 0;

@@ -63,6 +63,7 @@ TESTS						=	tests/test.c							\
 								tests/ftp/test_ftp.c					\
 								tests/ftp/test_free.c					\
 								tests/ftp/test_signal.c 				\
+								tests/ftp/auth/test_login.c				\
 
 OBJ_TESTS				=	$(SRC:.c=.o)
 

@@ -6,10 +6,10 @@
 */
 
 #ifndef TESTS_H
-#define TESTS_H
-#include <criterion/criterion.h>
-#include <criterion/redirect.h>
-#include "../include/ftp.h"
+    #define TESTS_H
+    #include <criterion/criterion.h>
+    #include <criterion/redirect.h>
+    #include "../include/ftp.h"
 
 void redirect_all_std(void);
 #endif /* !TESTS_H */
