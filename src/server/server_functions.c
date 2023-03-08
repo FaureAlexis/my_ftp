@@ -55,7 +55,7 @@ void handle_client_connection(int client_socket, char *client_ip)
         return;
     log_message(LOG_SUCCESS, "%s: Logged in successfully", client_ip);
     while (1) {
-        char *command = read_client(client_socket);
+        char *command = read_client(client_socket, 1024);
         if (command == NULL) {
             log_message(LOG_WARNING, "%s: Disconnected", client_ip);
             close(client_socket);

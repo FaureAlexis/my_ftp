@@ -9,7 +9,7 @@
 
 static int read_username(int client_socket, char **username)
 {
-    char *user_line = read_client(client_socket);
+    char *user_line = read_client(client_socket, 1024);
     if (!user_line)
         return 84;
     *username = strtok(user_line, "\r\n");
@@ -77,6 +77,6 @@ int login(int client_socket)
         return 84;
     }
     char *password = NULL;
-    char *pass_line = read_client(client_socket);
+    char *pass_line = read_client(client_socket, 1024);
     return check_auth(password, pass_line, client_socket, username);
 }
