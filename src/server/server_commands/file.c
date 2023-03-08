@@ -27,3 +27,17 @@ int handle_stor_command(int client_socket, char *param)
         return 84;
     return 0;
 }
+
+int handle_pasv_command(int client_socket, char *param)
+{
+    if (pasv(client_socket) == 84)
+        return 84;
+    return 0;
+}
+
+int handle_port_command(int client_socket, char *param)
+{
+    if (port(client_socket, param) == 84)
+        return 84;
+    return 0;
+}
