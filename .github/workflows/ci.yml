@@ -2,6 +2,7 @@ name: my_FTP CI
 on: [push]
 jobs:
   coding-style:
+    name: Coding style check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,7 +20,11 @@ jobs:
               ERRORS=$(cat coding-style-reports.log);
               echo "Banana found $NB_ERROR error(s)"
               echo "$ERRORS"
-              exit 1
+              if [ $NB_ERROR -gt 1 ]; then
+                  echo "Too many errors, please fix them before submitting your work"
+                  exit 1
+              fi
+              exit 0
           fi
           echo "Everything is good ! Keep on coding !"
           exit 0
