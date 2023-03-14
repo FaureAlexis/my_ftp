@@ -5,7 +5,7 @@ EPITECH B4 Network's first project
 
 ## Build
 
-`make re && ./myftp`
+`make re && ./myftp 21 <user_home>`
 
 ## Tests
 
